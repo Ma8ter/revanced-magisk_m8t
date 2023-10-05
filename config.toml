@@ -5,12 +5,11 @@ enable-magisk-update = true   # set this to false if you do not want to receive 
 # see https://github.com/j-hc/revanced-magisk-module/blob/main/CONFIG.md for more detailed explanations
 
 [YouTube]
-build-mode = "both"                                                   # 'both', 'apk' or 'module'
-excluded-patches = ""                                                 # space-seperated patches to exclude (multiline strings are not supported)
-included-patches = "custom-branding minimized-playback premium-heading sponsorblock swipe-controls"                                                 
-# space-seperated patches to include (non-excluded patches are included by default)
-exclusive-patches = true                                                 # space-seperated patches to include (non-excluded patches are included by default)
-version = "auto"                                                      # 'auto', 'latest', 'beta' or a custom one like '17.40.41'
+build-mode = "both"                                                                                  # 'both', 'apk' or 'module'
+excluded-patches = ""                                                                                # space-seperated patches to exclude (multiline strings are not supported)
+included-patches = "custom-branding minimized-playback premium-heading sponsorblock swipe-controls"  # space-seperated patches to include (non-excluded patches are included by default)
+exclusive-patches = true                                                                             # space-seperated patches to include (non-excluded patches are included by default)
+version = "auto"                                                                                     # 'auto', 'latest', 'beta' or a custom one like '17.40.41'
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 
 [Music]
