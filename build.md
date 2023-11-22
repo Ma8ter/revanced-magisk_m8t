@@ -1,5 +1,5 @@
-YouTube (arm-v7a): 18.45.41  
 YouTube (arm64-v8a): 18.45.41  
+YouTube (arm-v7a): 18.45.41  
 Music (arm64-v8a): 6.28.52  
 Music (arm-v7a): 6.28.52  
 
@@ -11,5 +11,5 @@ Use [zygisk-detach](https://github.com/j-hc/zygisk-detach) module to detach YouT
 Changelog:  
 CLI: j-hc/revanced-cli-4.1.0-all.jar  
 Integrations: ReVanced/revanced-integrations-0.123.0.apk  
-Patches: ReVanced/revanced-patches-2.199.0.jar  
-[Changelog](https://github.com/ReVanced/revanced-patches/releases/tag/v2.199.0)  
+Patches: ReVanced/revanced-patches-2.200.0.jar  
+[Changelog](https://github.com/ReVanced/revanced-patches/releases/tag/v2.200.0)  
