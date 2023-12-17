@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "patchName": "GmsCore support",
+    "options": [
+      {
+        "key": "gmsCoreVendor",
+        "value": "com.mgoogle"
+      }
+    ]
+  }
+]
