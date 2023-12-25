@@ -116,5 +116,7 @@ jobs:
           if-no-files-found: ignore
 
   report: 
+    permissions: write-all
+    needs: run
     uses: ./.github/workflows/tg_rep.yml
     secrets: inherit
