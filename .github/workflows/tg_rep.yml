@@ -13,12 +13,11 @@ jobs:
             with:
               distribution: "zulu"
               java-version: "17"
-              branch: update
               
           - name: report
             env:
              TG_TOKEN: ${{ secrets.TG_TOK }}
-             curver: ${{ vars.CUR_VER}}
+             curver: ${{ vars.CUR_VER }}
             if: env.TG_TOKEN != null
             run: |
                 
@@ -49,8 +48,7 @@ jobs:
                 MODULES=${MODULES#"$NL"}
                 APKS=${APKS#"$NL"}
 
-                BODY="$(sed 's/^\* \*\*/↪ \*\*/g; s/^\* `/↪ \*\*/g; s/`/\*/g; s/^\* /\↪/g; s/\*\*/\*/g; s/###//g; s/^- /↪ /g; /^==/d;' $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/blob/update/build.md)"
-                MSG="*New build!*
+                MSG="Release no.[${ env.curver }]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/latest/)
 
                 ${BODY}
 
