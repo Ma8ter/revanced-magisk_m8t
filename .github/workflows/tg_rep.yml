@@ -1,7 +1,12 @@
 name: Report to Telegram
 on:
+    push:
+        branches:
+            - update
     workflow_call:
+        
     workflow_dispatch:
+        
 
 jobs:
     report:
