@@ -48,7 +48,7 @@ jobs:
                 MODULES=${MODULES#"$NL"}
                 APKS=${APKS#"$NL"}
 
-                MSG="Release no.[${ env.curver }]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/latest/)
+                MSG="Release no.[${{ env.curver }}]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/latest/)
 
                 *▼ Download Links:*
                 Modules:
