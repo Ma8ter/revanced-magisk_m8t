@@ -47,7 +47,7 @@ jobs:
       - name: Build modules/APKs
         run: ./build.sh config.toml; gh variable set CUR_VER --body ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.FULL_PAT }}
           GITHUB_REPOSITORY: $GITHUB_REPOSITORY
           NEXT_VER_CODE: ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
 
