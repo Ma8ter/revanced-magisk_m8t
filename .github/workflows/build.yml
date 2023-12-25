@@ -45,12 +45,11 @@ jobs:
           echo "NEXT_VER_CODE=$((TAG + 1))" >> $GITHUB_OUTPUT
 
       - name: Build modules/APKs
-        run: ./build.sh config.toml
+        run: ./build.sh config.toml; vars.CUR_VER=${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: $GITHUB_REPOSITORY
           NEXT_VER_CODE: ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
-          vars.CUR_VER: ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
 
       - name: Get output
         id: get_output
@@ -120,3 +119,5 @@ jobs:
     needs: run
     uses: ./.github/workflows/tg_rep.yml
     secrets: inherit
+    with:
+      branch: update
