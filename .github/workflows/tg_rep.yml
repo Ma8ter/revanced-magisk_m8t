@@ -26,6 +26,7 @@ jobs:
                 NL=$'\n'
                 APKS=""
                 MODULES=""
+                CV="${{ env.curver }}"
                 for OUTPUT in *; do
                     DL_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/${{ env.curver }}/${OUTPUT}"
                     if [[ $OUTPUT = *revancedyt* ]]; then
@@ -48,7 +49,7 @@ jobs:
                 MODULES=${MODULES#"$NL"}
                 APKS=${APKS#"$NL"}
 
-                MSG="Release no.[${{ env.curver }}]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/latest/)
+                MSG="Release no.[${CV}]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/latest/)
 
                 *▼ Download Links:*
                 Modules:
