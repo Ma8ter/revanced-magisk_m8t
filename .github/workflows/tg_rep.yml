@@ -19,7 +19,6 @@ jobs:
              curver: ${{ vars.CUR_VER}}
             if: env.TG_TOKEN != null
             run: |
-                cd build || { echo "build folder not found"; exit 1; }
 
                 TG_CHAT="@rev_m8tr"
                 NL=$'\n'
