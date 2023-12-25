@@ -107,14 +107,14 @@ jobs:
           file_pattern: build.md *-update.json
           commit_message: Bump version ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
 
-      
-      - name: Report to TG
-        uses: ./.github/workflows/tg_rep.yml
-        with:
-          secrets: inherit
-        
       - uses: actions/upload-artifact@v3
         with:
           name: logs
           path: logs
           if-no-files-found: ignore
+
+  report:
+    uses: ./.github/workflows/tg_rep.yml
+    secrets: inherit
+    needs: run
+    permissions: write-all
