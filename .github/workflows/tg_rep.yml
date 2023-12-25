@@ -50,8 +50,6 @@ jobs:
 
                 MSG="Release no.[${ env.curver }]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/latest/)
 
-                ${BODY}
-
                 *▼ Download Links:*
                 Modules:
                 ${MODULES}
