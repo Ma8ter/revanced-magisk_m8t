@@ -21,6 +21,7 @@ jobs:
              curver: ${{ vars.CUR_VER}}
             if: env.TG_TOKEN != null
             run: |
+                cd build || { echo "build folder not found"; exit 1; }
 
                 TG_CHAT="@rev_m8tr"
                 NL=$'\n'
@@ -48,7 +49,7 @@ jobs:
                 MODULES=${MODULES#"$NL"}
                 APKS=${APKS#"$NL"}
 
-                BODY="$(sed 's/^\* \*\*/↪ \*\*/g; s/^\* `/↪ \*\*/g; s/`/\*/g; s/^\* /\↪/g; s/\*\*/\*/g; s/###//g; s/^- /↪ /g; /^==/d;' ./build.md)"
+                BODY="$(sed 's/^\* \*\*/↪ \*\*/g; s/^\* `/↪ \*\*/g; s/`/\*/g; s/^\* /\↪/g; s/\*\*/\*/g; s/###//g; s/^- /↪ /g; /^==/d;' ../build.md)"
                 MSG="*New build!*
 
                 ${BODY}
