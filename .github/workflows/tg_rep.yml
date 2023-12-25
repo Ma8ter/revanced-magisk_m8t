@@ -1,10 +1,6 @@
 name: Report to Telegram
 on:
-    push:
-        branches:
-            - update
-    workflow_call:
-        
+    workflow_call:    
     workflow_dispatch:
         
 
@@ -17,6 +13,7 @@ jobs:
             with:
               distribution: "zulu"
               java-version: "17"
+              branch: update
               
           - name: report
             env:
