@@ -119,5 +119,3 @@ jobs:
     needs: run
     uses: ./.github/workflows/tg_rep.yml
     secrets: inherit
-    with:
-      branch: update
