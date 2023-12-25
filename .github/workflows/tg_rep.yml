@@ -1,0 +1,65 @@
+name: Report to Telegram
+on:
+    workflow_call:
+    workflow_dispatch:
+
+jobs:
+    run:
+        permissions: write-all
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/setup-java@v3
+            with:
+              distribution: "zulu"
+              java-version: "17"
+              
+          - name: report
+            env:
+             TG_TOKEN: ${{ secrets.TG_TOK }}
+             curver: ${{ vars.CUR_VER}}
+            if: env.TG_TOKEN != null
+            run: |
+                cd build || { echo "build folder not found"; exit 1; }
+
+                TG_CHAT="@rev_m8tr"
+                NL=$'\n'
+                APKS=""
+                MODULES=""
+                for OUTPUT in *; do
+                    DL_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/${{ env.curver }}/${OUTPUT}"
+                    if [[ $OUTPUT = *revancedyt* ]]; then
+                    PRNAME="Revanced YT M8T"
+                    elif [[ $OUTPUT = *rvmusic* ]]; then
+                    PRNAME="Revanced YT Music M8T"
+                    fi
+                    if [[ $OUTPUT = *arm64* ]]; then
+                    PRARM="arm64"
+                    elif [[ $OUTPUT = *arm-7* ]]; then
+                    PRARM="arm7"
+                    fi
+                    FANCY_OUT="${PRNAME} /${PRARM}/"
+                    if [[ $OUTPUT = *.apk ]]; then
+                    APKS+="${NL}📦[${FANCY_OUT}](${DL_URL})"
+                    elif [[ $OUTPUT = *.zip ]]; then
+                    MODULES+="${NL}📦[${FANCY_OUT}](${DL_URL})"
+                    fi
+                done
+                MODULES=${MODULES#"$NL"}
+                APKS=${APKS#"$NL"}
+
+                BODY="$(sed 's/^\* \*\*/↪ \*\*/g; s/^\* `/↪ \*\*/g; s/`/\*/g; s/^\* /\↪/g; s/\*\*/\*/g; s/###//g; s/^- /↪ /g; /^==/d;' ../build.md)"
+                MSG="*New build!*
+
+                ${BODY}
+
+                *▼ Download Links:*
+                Modules:
+                ${MODULES}
+
+                APKs:
+                ${APKS}
+                "
+                echo "'$MSG'"
+                MSG=${MSG:0:9450}
+                POST="https://api.telegram.org/bot${TG_TOKEN}/sendMessage"
+                curl -X POST --data-urlencode "parse_mode=Markdown" --data-urlencode "disable_web_page_preview=true" --data-urlencode "text=${MSG}" --data-urlencode "chat_id=${TG_CHAT}" "$POST"
