@@ -14,6 +14,12 @@ jobs:
               distribution: "zulu"
               java-version: "17"
               
+          - name: Checkout
+            uses: actions/checkout@v3
+            with:
+              fetch-depth: 0
+              submodules: true
+              
           - name: report
             env:
              TG_TOKEN: ${{ secrets.TG_TOK }}
