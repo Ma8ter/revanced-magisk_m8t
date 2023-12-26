@@ -155,7 +155,7 @@ jobs:
                 ${APKS}
                 "
                 echo "'$MSG'"
-                gh variable set RELEASE_NOTE --body ${MSG}
+                gh variable set RELEASE_NOTE --body "${MSG}"
                 
       - uses: actions/upload-artifact@v3
         with:
