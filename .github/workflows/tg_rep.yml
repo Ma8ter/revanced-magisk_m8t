@@ -20,7 +20,8 @@ jobs:
              RELNOT: ${{ vars.RELEASE_NOTE }}
             if: env.TG_TOKEN != null
             run: |
-                
+                RELNOT=${{ vars.RELEASE_NOTE }}
+                echo '${RELNOT}'
                 TG_CHAT="@rev_m8tr"
                 MSG=${RELNOT:0:9450}
                 POST="https://api.telegram.org/bot${TG_TOKEN}/sendMessage"
