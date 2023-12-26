@@ -1,6 +1,6 @@
 RVMusicM8T (arm-v7a): 6.31.55  
-ReVancedYTM8T (arm-v7a): 18.45.43  
 ReVancedYTM8T (arm64-v8a): 18.45.43  
+ReVancedYTM8T (arm-v7a): 18.45.43  
 RVMusicM8T (arm64-v8a): 6.31.55  
 
 Install [Vanced Microg](https://github.com/TeamVanced/VancedMicroG/releases) for non-root YouTube and YT Music  
