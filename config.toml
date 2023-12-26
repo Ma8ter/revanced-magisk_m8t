@@ -8,14 +8,12 @@ enable-magisk-update = true   # set this to false if you do not want to receive 
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube-music/"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.apps.youtube.music"
 version = "auto"
-arch = "both"
 build-mode = "both"
 
 [ReVanced YT M8T]
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 version = "auto"
-arch = "universal"
 build-mode = "both"
 included-patches = "'Disable player popup panels' 'Navigation buttons' 'Hide cast button' 'Disable auto captions' 'Premium heading' 'Alternative thumbnails' 'SponsorBlock' 'Swipe controls' 'Copy video url' 'Remember video quality' 'Video ads' 'Hide ads' 'Minimized playback' 'Bypass URL redirects' 'Remove tracking query parameter' 'GmsCore support'"
 exclusive-patches = true
