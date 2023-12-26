@@ -127,7 +127,7 @@ jobs:
                     fi
                     if [[ $OUTPUT = *arm64* ]]; then
                     PRARM="arm64"
-                    elif [[ $OUTPUT = *arm-7* ]]; then
+                    elif [[ $OUTPUT = *arm-v7* ]]; then
                     PRARM="arm7"
                     elif [[ $OUTPUT = *all* ]]; then
                     PRARM="all"
@@ -155,7 +155,7 @@ jobs:
                 ${APKS}
                 "
                 echo "'$MSG'"
-                gh variable set RELEASE_NOTE --body "${MSG}"
+                gh variable set RELEASE_NOTE --body "'${MSG}'"
                 
       - uses: actions/upload-artifact@v3
         with:
