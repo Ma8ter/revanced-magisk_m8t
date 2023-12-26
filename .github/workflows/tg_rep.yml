@@ -17,10 +17,10 @@ jobs:
           - name: report
             env:
              TG_TOKEN: ${{ secrets.TG_TOK }}
-             RELNOT: "${{ vars.RELEASE_NOTE }}"
+             RELNOT: '${{ vars.RELEASE_NOTE }}'
             if: env.TG_TOKEN != null
             run: |
-                echo '${RELNOT}'
+                echo ${RELNOT}
                 TG_CHAT="@rev_m8tr"
                 MSG=${RELNOT:0:9450}
                 POST="https://api.telegram.org/bot${TG_TOKEN}/sendMessage"
