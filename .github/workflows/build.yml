@@ -107,6 +107,56 @@ jobs:
           file_pattern: build.md *-update.json
           commit_message: Bump version ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
 
+      - name: Report To TG
+        env:
+          GITHUB_TOKEN: ${{ secrets.FULL_PAT }}
+          curver: ${{ vars.CUR_VER }}
+          run: |
+            cd build || { echo "build folder not found"; exit 1; }
+
+                NL=$'\n'
+                APKS=""
+                MODULES=""
+                CV="${{ env.curver }}"
+                for OUTPUT in *; do
+                    DL_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/${CV}/${OUTPUT}"
+                    if [[ $OUTPUT = *revancedyt* ]]; then
+                    PRNAME="Revanced YT M8T"
+                    elif [[ $OUTPUT = *rvmusic* ]]; then
+                    PRNAME="Revanced YT Music M8T"
+                    fi
+                    if [[ $OUTPUT = *arm64* ]]; then
+                    PRARM="arm64"
+                    elif [[ $OUTPUT = *arm-7* ]]; then
+                    PRARM="arm7"
+                    elif [[ $OUTPUT = *all* ]]; then
+                    PRARM="all"
+                    fi
+                    FANCY_OUT="${PRNAME} /${PRARM}/"
+                    if [[ $OUTPUT = *.apk ]]; then
+                    APKS+="${NL}📦[${FANCY_OUT}](${DL_URL})"
+                    elif [[ $OUTPUT = *.zip ]]; then
+                    MODULES+="${NL}📦[${FANCY_OUT}](${DL_URL})"
+                    fi
+                done
+                MODULES=${MODULES#"$NL"}
+                APKS=${APKS#"$NL"}
+
+                BODY="$(sed 's/^\* \*\*/↪ \*\*/g; s/^\* `/↪ \*\*/g; s/`/\*/g; s/^\* /\↪/g; s/\*\*/\*/g; s/###//g; s/^- /↪ /g; /^==/d;' ../build.md)"
+                MSG="Release no. [${CV}]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/tag/${CV})
+
+                ${BODY}
+
+                *▼ Download Links:*
+                Modules:
+                ${MODULES}
+
+                APKs:
+                ${APKS}
+                "
+                echo "'$MSG'"
+                gh variable set RELEASE_NOTE --body ${MSG}
+                
       - uses: actions/upload-artifact@v3
         with:
           name: logs
