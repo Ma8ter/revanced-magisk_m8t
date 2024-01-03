@@ -111,7 +111,7 @@ jobs:
       - name: Report To TG
         env:
           GITHUB_TOKEN: ${{ secrets.FULL_PAT }}
-          curver: ${{ vars.CUR_VER }}
+          curver: ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
         run: |
             cd build || { echo "build folder not found"; exit 1; }
 
