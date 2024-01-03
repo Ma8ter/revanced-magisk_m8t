@@ -160,6 +160,7 @@ jobs:
             "
             echo "'$MSG'"
             gh variable set RELEASE_NOTE --body "${MSG}"
+            echo "var: ${NL} ${{ vars.RELEASE_NOTE }}"
                 
       - uses: actions/upload-artifact@v3
         with:
