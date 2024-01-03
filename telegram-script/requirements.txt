@@ -1,3 +1,0 @@
-requests
-telegraph
-gh-md-to-html[offline_conversion] 
