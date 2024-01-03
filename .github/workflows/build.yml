@@ -43,6 +43,7 @@ jobs:
           TAG=$(gh release list -L 1 | awk -F '\t' '{print $3}')
           if [ -z "$TAG" ]; then TAG=0; fi
           echo "NEXT_VER_CODE=$((TAG + 1))" >> $GITHUB_OUTPUT
+          gh variable set CUR_VER --body $((TAG + 1))
 
       - name: Build modules/APKs
         run: ./build.sh config.toml
@@ -59,7 +60,6 @@ jobs:
           cat build.md >> "$GITHUB_OUTPUT"
           echo "${DELIM}" >> "$GITHUB_OUTPUT"
           cp -f build.md build.tmp
-          gh variable set CUR_VER --body ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
 
       - name: Upload modules to release
         uses: svenstaro/upload-release-action@v2
@@ -67,7 +67,7 @@ jobs:
           body: ${{ steps.get_output.outputs.BUILD_LOG }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ./build/*
-          release_name: ReVanced
+          release_name: ReVanced M8T
           tag: ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
           file_glob: true
           overwrite: true
