@@ -20,8 +20,8 @@ jobs:
              RELNOT: '${{ vars.RELEASE_NOTE }}'
             if: env.TG_TOKEN != null
             run: |
-                echo ${env.RELNOT}
+                echo ${{env.RELNOT}}
                 TG_CHAT="@rev_m8tr"
-                MSG=${env.RELNOT}
+                MSG=${{env.RELNOT}}
                 POST="https://api.telegram.org/bot${TG_TOKEN}/sendMessage"
                 curl -X POST --data-urlencode "parse_mode=Markdown" --data-urlencode "disable_web_page_preview=true" --data-urlencode "text=${MSG}" --data-urlencode "chat_id=${TG_CHAT}" "$POST"
